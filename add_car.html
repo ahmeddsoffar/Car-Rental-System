@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Car - Car Rental System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Add New Car</h2>
+        <form id="add-car-form">
+            <label for="model">Car Model</label>
+            <input type="text" id="model" name="model" placeholder="Car Model" required>
+
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" placeholder="Year" required>
+
+            <label for="plate_id">Plate ID</label>
+            <input type="text" id="plate_id" name="plate_id" placeholder="Plate ID" required>
+
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="active">Active</option>
+                <option value="out_of_service">Out of Service</option>
+                <option value="rented">Rented</option>
+            </select>
+
+            <button type="submit">Add Car</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('add-car-form').onsubmit = function(event) {
+            event.preventDefault();
+            // Logic to add car to the system (e.g., sending data to the server)
+            alert('Car added successfully!');
+            window.location.href = 'admin_dashboard.html'; // Redirect back to admin dashboard
+        };
+    </script>
+
+</body>
+</html>

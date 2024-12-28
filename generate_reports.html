@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reports - Car Rental System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card input[type="date"],
+        .card input[type="text"],
+        .card select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="view_reservations.html">View Reservations</a>
+        <a href="reports.html">Reports</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>Reports</h1>
+
+        <!-- Report 1: All reservations within a specified period -->
+        <div class="card">
+            <h2>All Reservations Within a Specified Period</h2>
+            <form id="report1-form">
+                <label for="report1-start">Start Date</label>
+                <input type="date" id="report1-start" name="start_date" required>
+
+                <label for="report1-end">End Date</label>
+                <input type="date" id="report1-end" name="end_date" required>
+
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+        <!-- Report 2: All reservations for a specific car -->
+        <div class="card">
+            <h2>All Reservations of a Specific Car</h2>
+            <form id="report2-form">
+                <label for="car-id">Car ID</label>
+                <input type="text" id="car-id" name="car_id" placeholder="Enter Car ID" required>
+
+                <label for="report2-start">Start Date</label>
+                <input type="date" id="report2-start" name="start_date" required>
+
+                <label for="report2-end">End Date</label>
+                <input type="date" id="report2-end" name="end_date" required>
+
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+        <!-- Report 3: Status of all cars on a specific day -->
+        <div class="card">
+            <h2>Status of All Cars on a Specific Day</h2>
+            <form id="report3-form">
+                <label for="report3-date">Date</label>
+                <input type="date" id="report3-date" name="date" required>
+
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+        <!-- Report 4: All reservations of a specific customer -->
+        <div class="card">
+            <h2>All Reservations of a Specific Customer</h2>
+            <form id="report4-form">
+                <label for="customer-id">Customer ID</label>
+                <input type="text" id="customer-id" name="customer_id" placeholder="Enter Customer ID" required>
+
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+        <!-- Report 5: Daily Payments within a specified period -->
+        <div class="card">
+            <h2>Daily Payments Within a Specified Period</h2>
+            <form id="report5-form">
+                <label for="report5-start">Start Date</label>
+                <input type="date" id="report5-start" name="start_date" required>
+
+                <label for="report5-end">End Date</label>
+                <input type="date" id="report5-end" name="end_date" required>
+
+                <button type="submit">Generate Report</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Example handling for report forms
+        document.getElementById('report1-form').onsubmit = function(event) {
+            event.preventDefault();
+            const startDate = document.getElementById('report1-start').value;
+            const endDate = document.getElementById('report1-end').value;
+            alert('Generating report for all reservations between ' + startDate + ' and ' + endDate);
+            // Send data to server to generate the report
+        };
+
+        document.getElementById('report2-form').onsubmit = function(event) {
+            event.preventDefault();
+            const carId = document.getElementById('car-id').value;
+            const startDate = document.getElementById('report2-start').value;
+            const endDate = document.getElementById('report2-end').value;
+            alert('Generating report for all reservations of car ID ' + carId + ' between ' + startDate + ' and ' + endDate);
+            // Send data to server to generate the report
+        };
+
+        document.getElementById('report3-form').onsubmit = function(event) {
+            event.preventDefault();
+            const date = document.getElementById('report3-date').value;
+            alert('Generating report for the status of all cars on ' + date);
+            // Send data to server to generate the report
+        };
+
+        document.getElementById('report4-form').onsubmit = function(event) {
+            event.preventDefault();
+            const customerId = document.getElementById('customer-id').value;
+            alert('Generating report for all reservations of customer ID ' + customerId);
+            // Send data to server to generate the report
+        };
+
+        document.getElementById('report5-form').onsubmit = function(event) {
+            event.preventDefault();
+            const startDate = document.getElementById('report5-start').value;
+            const endDate = document.getElementById('report5-end').value;
+            alert('Generating report for daily payments between ' + startDate + ' and ' + endDate);
+            // Send data to server to generate the report
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Signup</title>
+    <link rel="stylesheet" href="css\custmercss.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Customer Signup</h2>
+        <form id="customer-signup-form" onsubmit="return validateForm()">
+            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="id" id="id" name="id" placeholder="ID" required>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+            <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
+            <input type="license" id="license" placeholder="license number" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            
+            <button type="submit">Sign Up</button>
+            <p id="error-message" class="error-message">Passwords do not match</p>
+        </form>
+    </div>
+    
+    <script>
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Signup successful!');
+                // Redirect to customer dashboard or login page
+                window.location.href = 'customer_dashboard.html';
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

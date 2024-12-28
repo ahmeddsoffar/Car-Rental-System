@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car Status - Car Rental System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .form-container select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Update Car Status</h2>
+        <form id="update-status-form">
+            <label for="car-id">Car ID</label>
+            <select id="car-id" name="car-id" required>
+                <!-- Populate with car IDs dynamically -->
+                <option value="1">Car 1</option>
+                <option value="2">Car 2</option>
+            </select>
+
+            <label for="status">New Status</label>
+            <select id="status" name="status" required>
+                <option value="active">Active</option>
+                <option value="out_of_service">Out of Service</option>
+                <option value="rented">Rented</option>
+            </select>
+
+            <button type="submit">Update Status</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('update-status-form').onsubmit = function(event) {
+            event.preventDefault();
+            // Logic to update car status (e.g., sending data to the server)
+            alert('Car status updated successfully!');
+            window.location.href = 'admin_dashboard.html'; // Redirect back to admin dashboard
+        };
+    </script>
+
+</body>
+</html>

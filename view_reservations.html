@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Reservations - Car Rental System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card input[type="text"],
+        .card input[type="date"],
+        .card select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #45a049;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="view_reservations.html">View Reservations</a>
+        <a href="generate_reports.html">Reports</a>
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>View Reservations</h1>
+
+        <!-- Search Form -->
+        <div class="card">
+            <h2>Search Reservations</h2>
+            <form id="search-reservation-form">
+                <label for="reservation-id">Reservation ID (optional)</label>
+                <input type="text" id="reservation-id" name="reservation_id" placeholder="Enter Reservation ID">
+                
+                <label for="car-id">Car ID (optional)</label>
+                <input type="text" id="car-id" name="car_id" placeholder="Enter Car ID">
+                
+                <label for="customer-id">Customer ID (optional)</label>
+                <input type="text" id="customer-id" name="customer_id" placeholder="Enter Customer ID">
+                
+                <label for="start-date">Start Date (optional)</label>
+                <input type="date" id="start-date" name="start_date">
+                
+                <label for="end-date">End Date (optional)</label>
+                <input type="date" id="end-date" name="end_date">
+                
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Reservation Results Table -->
+        <div class="table-container">
+            <table id="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Reservation ID</th>
+                        <th>Customer Name</th>
+                        <th>Car Model</th>
+                        <th>Car Plate ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Results will be inserted dynamically here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Example handling for the search form
+        document.getElementById('search-reservation-form').onsubmit = function(event) {
+            event.preventDefault();
+
+            const reservationId = document.getElementById('reservation-id').value;
+            const carId = document.getElementById('car-id').value;
+            const customerId = document.getElementById('customer-id').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+
+            // Example of search result simulation
+            alert('Searching for reservations with the following details:\n' +
+                  'Reservation ID: ' + reservationId + '\n' +
+                  'Car ID: ' + carId + '\n' +
+                  'Customer ID: ' + customerId + '\n' +
+                  'Start Date: ' + startDate + '\n' +
+                  'End Date: ' + endDate);
+
+            // You can send this data to the server using AJAX to fetch the results
+            // Here, we simulate the data insertion into the table
+
+            // Example result (you can replace it with actual dynamic data from the backend)
+            const reservationResults = [
+                {
+                    reservationId: 'R001',
+                    customerName: 'John Doe',
+                    carModel: 'Toyota Corolla',
+                    carPlateId: 'ABC123',
+                    startDate: '2024-12-15',
+                    endDate: '2024-12-20',
+                    status: 'Rented',
+                    amount: '$150',
+                },
+                {
+                    reservationId: 'R002',
+                    customerName: 'Jane Smith',
+                    carModel: 'Ford Focus',
+                    carPlateId: 'XYZ987',
+                    startDate: '2024-12-10',
+                    endDate: '2024-12-12',
+                    status: 'Returned',
+                    amount: '$80',
+                },
+            ];
+
+            // Clear previous results
+            const tbody = document.querySelector('#reservations-table tbody');
+            tbody.innerHTML = '';
+
+            // Insert new results
+            reservationResults.forEach(reservation => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${reservation.reservationId}</td>
+                    <td>${reservation.customerName}</td>
+                    <td>${reservation.carModel}</td>
+                    <td>${reservation.carPlateId}</td>
+                    <td>${reservation.startDate}</td>
+                    <td>${reservation.endDate}</td>
+                    <td>${reservation.status}</td>
+                    <td>${reservation.amount}</td>
+                    <td><button>View Details</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        };
+    </script>
+
+</body>
+</html>

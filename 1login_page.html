@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="admin-button-container">
+        <button class="admin-login-button" onclick="location.href='admin_login.html'">Admin Login</button>
+    </div>
+    <div class="admin-signup-container">
+        <button class="admin-signup-button" onclick="location.href='admin_signup.html'">Admin Signup</button>
+    </div>
+    <div class="container">
+        <div class="login-container">
+            <h2>Customer Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="customer_signup.html">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="image-container"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the values entered by the user
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Mock credentials (you can replace this with an actual backend check)
+            const correctUsername = 'c1';
+            const correctPassword = '123';
+
+            // Check if entered credentials match
+            if (username === correctUsername && password === correctPassword) {
+                // Redirect to customer dashboard if credentials are correct
+                window.location.href = 'customer_dashboard.html';
+            } else {
+                // Alert if credentials are incorrect
+                alert('Incorrect username or password');
+            }
+        });
+    </script> 
+</body>
+</html>
