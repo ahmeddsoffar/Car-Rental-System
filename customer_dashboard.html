@@ -61,7 +61,17 @@
     </div>
 
     <div class="container">
-        <h1>Welcome, [Customer Name]</h1>
+        <h1 id="welcome-message"></h1>
+        <script>
+            
+            const name = localStorage.getItem('username');
+            
+            
+            
+                document.getElementById('welcome-message').textContent = `Welcome, ${name}!`;
+                
+             
+        </script>
         <p>Manage your car rentals, view your reservations, and search for available cars below.</p>
         
         <div class="button-container">

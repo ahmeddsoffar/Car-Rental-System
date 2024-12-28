@@ -9,14 +9,14 @@
 <body>
     <div class="signup-container">
         <h2>Customer Signup</h2>
-        <form id="customer-signup-form" onsubmit="return validateForm()">
+        <form  id="customer-signup-form" >
             <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
             <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="id" id="id" name="id" placeholder="ID" required>
+            <input type="address" id="address" name="address" placeholder="Address" required>
             <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
             <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
-            <input type="license" id="license" placeholder="license number" required>
+            <input type="license" id="license" name="license" placeholder="license number" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
             
@@ -24,24 +24,52 @@
             <p id="error-message" class="error-message">Passwords do not match</p>
         </form>
     </div>
-    
     <script>
-        function validateForm() {
+            // Handle form submission with AJAX
+            document.getElementById('customer-signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
+            
             const errorMessage = document.getElementById('error-message');
 
             if (password !== confirmPassword) {
                 errorMessage.style.display = 'block';
+                
                 return false;
             } else {
                 errorMessage.style.display = 'none';
-                alert('Signup successful!');
-                // Redirect to customer dashboard or login page
-                window.location.href = 'customer_dashboard.html';
-                return false;
+                
             }
-        }
+
+            const formData = new FormData(document.getElementById('customer-signup-form'));
+            // Create AJAX request 
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'customer_signup.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Handle the response from the PHP script
+                    const response = xhr.responseText;
+
+                    if (response === 'success') {
+                        alert('Signup successful!');
+                        localStorage.setItem('username', document.getElementById('first-name').value +" "+ document.getElementById('last-name').value);
+                        window.location.href = 'customer_dashboard.html'; // Redirect to dashboard
+                    } else {
+                        alert('Signup failed: ' + response); // Show error message if signup fails
+                    }
+                } else {
+                    alert('Error: ' + xhr.status); // Handle server errors
+                }
+            };
+
+            // Send form data to the PHP file
+            xhr.send(formData);
+
+
+        });
+        
     </script>
 </body>
 </html>
