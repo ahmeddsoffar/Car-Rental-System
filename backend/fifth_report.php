@@ -26,10 +26,16 @@ try {
         $currentDate = $start->format('Y-m-d');
 
         $query = "
-            SELECT SUM(c.price_per_day*(r.return_date-r.pickup_date)) AS total_payment
-            FROM reservation r JOIN car c ON r.CarID=c.CarID 
-            WHERE r.reservation_Date = :current_date
-            GROUP BY r.reservation_Date
+            SELECT 
+                    SUM(c.price_per_day * DATEDIFF(r.return_date, r.pickup_date)) AS total_payment
+            FROM 
+                        reservation r
+            JOIN 
+                        car c ON r.CarID = c.CarID
+            WHERE 
+                        r.reservation_Date = :current_date
+            GROUP BY 
+                        r.reservation_Date;
         ";
 
         $stmt = $pdo->prepare($query);

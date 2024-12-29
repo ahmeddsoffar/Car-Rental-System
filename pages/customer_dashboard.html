@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Customer Dashboard - Car Rental System</title>
-    <link rel="stylesheet" href="../css/customer_dashboard.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../css/customer_dashboard.css" />
+  </head>
+  <body>
     <div class="navbar">
-        <a href="customer_dashboard.html">Dashboard</a>
-        <a href="search_cars.html">Search Cars</a>
-        <a href="customer_view_reservations.html">My Reservations</a>
-        <a href="profile.html">Profile</a>
-        <a href="1login_page.html">Logout</a>
+      <a href="customer_dashboard.html">Dashboard</a>
+      <a href="search_cars.html">Search Cars</a>
+      <a href="customer_view_reservations.html">My Reservations</a>
+      <a href="1login_page.html">Logout</a>
     </div>
 
     <div class="container">
-        <h1 id="welcome-message"></h1>
-        <script>
-            
-            const name = localStorage.getItem('username');
+      <h1 id="welcome-message"></h1>
+      <script>
+        const name = localStorage.getItem("username");
 
-            
-            
-            
-            
-                document.getElementById('welcome-message').textContent = `Welcome, ${name}!`;
-                
-             
-        </script>
-        <p>Manage your car rentals, view your reservations, and search for available cars below.</p>
-        
-        <div class="button-container">
-            <button onclick="window.location.href='search_cars.html'">Search Cars</button>
-            <button onclick="window.location.href='customer_view_reservations.html'">My Reservations</button>
-            <button onclick="window.location.href='profile.html'">Update Profile</button>
-        </div>
+        document.getElementById(
+          "welcome-message"
+        ).textContent = `Welcome, ${name}!`;
+      </script>
+      <p>
+        Manage your car rentals, view your reservations, and search for
+        available cars below.
+      </p>
+
+      <div class="button-container">
+        <button onclick="window.location.href='search_cars.html'">
+          Search Cars
+        </button>
+        <button
+          onclick="window.location.href='customer_view_reservations.html'"
+        >
+          My Reservations
+        </button>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>

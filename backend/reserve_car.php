@@ -42,7 +42,11 @@ if($result1->num_rows == 0 ) {
     $sql3 = "INSERT INTO CarStatus (CarID, current_status, StartDate, EndDate)
 VALUES( $carID, 'rented', '$pickup', '$return');";
 
-    if ($conn->query($sql2) === TRUE && $conn->query($sql3)) {
+$sql4 = "UPDATE Car 
+SET Car_status = 'rented'
+WHERE CarID = $carID;";
+
+    if ($conn->query($sql2) === TRUE && $conn->query($sql3) && $conn->query($sql4)) {
         // Return a JSON response
         echo json_encode(['status' => 'success', 'message' => 'Reservation created successfully']);
     } else {

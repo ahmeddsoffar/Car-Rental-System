@@ -23,7 +23,7 @@ $motortype = $_GET['motor-type'] ?? null;
 
 
 
-$query = "SELECT c.CarID,c.PlateID,c.Year,c.price_per_day,c.model,c.color,c.carType,c.No_of_seats,c.motor_type
+$query = "SELECT c.CarID,c.PlateID,c.Year,c.price_per_day,c.model,c.color,c.carType,c.No_of_seats,c.motor_type,c.Car_status
           FROM car c
           WHERE 1=1";
 
