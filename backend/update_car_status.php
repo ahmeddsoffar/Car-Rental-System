@@ -15,6 +15,8 @@ if ($conn->connect_error) {
 
 $status = $_POST['status'];
 $car_ID= $_POST['car-id'];
+$start_date= $_POST['start_date'];
+$end_date= $_POST['end_date'];
 
 $sql = "SELECT * FROM Car WHERE CarID = '$car_ID'";
 
@@ -34,9 +36,13 @@ if ($result1->num_rows == 0 ) {
 else{
 
     $sql2 = "UPDATE Car SET  Car_status = '$status'  WHERE  CarID='$car_ID'";
+    $sql3 =  "INSERT INTO CarStatus ( CarID, current_status, StartDate, EndDate)
+            VALUES ('$car_ID','$status','$start_date','$end_date');
+          ";
 
 $result2 = $conn->query($sql2);
-if (!$result2) {
+$result3 = $conn->query($sql3);
+if (!$result2||!$result3) {
   // If the query failed, output an error message
   die("Error executing query: " . $conn->error);
 }

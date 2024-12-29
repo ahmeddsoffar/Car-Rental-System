@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 
 
-if (isset($_POST['user_name'], $_POST['pickup_date'], $_POST['return_date'])) {
+if (isset($_POST['user_name'], $_POST['pickup_date'], $_POST['return_date'],$_POST['car_ID'])) {
     $currUser = $_POST['user_name'];
     $pickup = $_POST['pickup_date'];
     $return = $_POST['return_date'];
@@ -38,8 +38,11 @@ if($result1->num_rows == 0 ) {
             VALUES (NOW(), '$pickup', '$return', $carID, (SELECT ID
                               FROM customer
                               WHERE username = '$currUser' ))";
+    
+    $sql3 = "INSERT INTO CarStatus (CarID, current_status, StartDate, EndDate)
+VALUES( $carID, 'rented', '$pickup', '$return');";
 
-    if ($conn->query($sql2) === TRUE) {
+    if ($conn->query($sql2) === TRUE && $conn->query($sql3)) {
         // Return a JSON response
         echo json_encode(['status' => 'success', 'message' => 'Reservation created successfully']);
     } else {

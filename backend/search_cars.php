@@ -23,9 +23,9 @@ $motortype = $_GET['motor-type'] ?? null;
 
 
 
-$query = "SELECT c.carID,c.PlateID,c.Year,c.model,c.color,c.carType,c.No_of_seats,c.motor_type
+$query = "SELECT c.CarID,c.PlateID,c.Year,c.price_per_day,c.model,c.color,c.carType,c.No_of_seats,c.motor_type
           FROM car c
-          WHERE c.Car_status = 'active'";
+          WHERE 1=1";
 
 $params = [];
 $types = '';

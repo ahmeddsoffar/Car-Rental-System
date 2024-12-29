@@ -6,7 +6,7 @@ CREATE TABLE Car(
     Car_status varchar(20) not null ,
     price_per_day decimal(10,2),
  	model varchar(20) not null,
-    PlateID int not null,
+    PlateID int not null, 
     color varchar(20) not null,
     motor_type varchar(20) not null,
     No_of_seats int not null,

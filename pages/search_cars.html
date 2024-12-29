@@ -75,6 +75,7 @@
                         <th>Car ID</th>
                         <th>Plate ID</th>
                         <th>Year</th>
+                        <th>$/Day</th>
                         <th>Car Model</th>
                         <th>Car Color</th>
                         <th>Car Type</th>
@@ -111,12 +112,13 @@
                 data.forEach(record => {
                     const row = document.createElement('tr');
 
-                   const reserveUrl = `reserve_car.html?carID=${encodeURIComponent(record.carID)}&model=${encodeURIComponent(record.model)}&color=${encodeURIComponent(record.color)}&seats=${encodeURIComponent(record.No_of_seats)}&carType=${encodeURIComponent(record.carType)}&year=${encodeURIComponent(record.Year)}&motorType=${encodeURIComponent(record.motor_type)}&plateId=${encodeURIComponent(record.PlateID)}`;
+                   const reserveUrl = `reserve_car.html?CarID=${encodeURIComponent(record.CarID)}&price_per_day=${encodeURIComponent(record.price_per_day)}&model=${encodeURIComponent(record.model)}&color=${encodeURIComponent(record.color)}&seats=${encodeURIComponent(record.No_of_seats)}&carType=${encodeURIComponent(record.carType)}&year=${encodeURIComponent(record.Year)}&motorType=${encodeURIComponent(record.motor_type)}&plateId=${encodeURIComponent(record.PlateID)}`;
                     
                     row.innerHTML = `
-                        <td>${record.carID}</td>
+                        <td>${record.CarID}</td>
                         <td>${record.PlateID}</td>
                         <td>${record.Year}</td>
+                        <td>${record.price_per_day}$</td>
                         <td>${record.model}</td>
                         <td>${record.color}</td>
                         <td>${record.carType}</td>
