@@ -68,7 +68,7 @@
         const endDate = urlParams.get("end_date");
 
         // Fetch report data
-        const apiUrl = `http://localhost/finallabdb/backend/generate_report.php?report_type=report1&start_date=${startDate}&end_date=${endDate}`;
+        const apiUrl = `http://localhost/finallabdb/backend/first_report.php?report_type=report1&start_date=${startDate}&end_date=${endDate}`;
 
         fetch(apiUrl)
           .then((response) => {

@@ -3,7 +3,8 @@ Create Database car_rental_system;
 CREATE TABLE Car(
     CarID int not null PRIMARY KEY AUTO_INCREMENT,
     Year int(4) not null,
-    Car_status varchar(10) not null,
+    Final_status varchar(20) not null ,
+    price_per_day decimal(10,2),
  	model varchar(20) not null,
     PlateID int not null,
     color varchar(20) not null,
@@ -11,6 +12,15 @@ CREATE TABLE Car(
     No_of_seats int not null,
     carType varchar(20) not null,
     office_ID int not null   
+);
+
+CREATE TABLE CarStatus (
+    statusID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    CarID int NOT NULL,
+    current_status varchar(20) NOT NULL, 
+    StartDate date NOT NULL,
+    EndDate date NOT NULL,
+    FOREIGN KEY (CarID) REFERENCES Car(CarID)
 );
 
 CREATE TABLE Customer(
@@ -45,14 +55,7 @@ CREATE TABLE office(
     phone_number int(11) not null
 );
 
-CREATE TABLE payment(
-	payment_ID int not null,
-    amount_of_money int not null,
-    method_of_payment varchar(100) not null,
-    payment_date date,
-    reservation_ID int not null,
-    PRIMARY key(payment_ID,reservation_ID)
-);
+
 
 CREATE TABLE reservation(
     reservation_ID int not null PRIMARY KEY AUTO_INCREMENT,
@@ -67,10 +70,8 @@ CREATE TABLE reservation(
 ALTER TABLE reservation
 ADD FOREIGN KEY(CarID) REFERENCES car(CarID);
 
-ALTER TABLE payment
-ADD FOREIGN KEY(reservation_ID) REFERENCES reservation(reservation_ID);
 
-ALTER TABLE Reservation
+ALTER TABLE reservation
 ADD FOREIGN KEY (CustomerID) REFERENCES Customer(ID);
 
 ALTER TABLE car

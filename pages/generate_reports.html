@@ -22,7 +22,7 @@
       <!-- Report 1: All reservations within a specified period -->
       <div class="card">
         <h2>All Reservations Within a Specified Period</h2>
-        <form id="report1-form">
+        <form id="report1-form" action="first_report.html">
           <label for="report1-start">Start Date</label>
           <input type="date" id="report1-start" name="start_date" required />
 
@@ -100,13 +100,6 @@
     </div>
 
     <script>
-      document.getElementById("report1-form").onsubmit = function (event) {
-        event.preventDefault();
-        const startDate = document.getElementById("report1-start").value;
-        const endDate = document.getElementById("report1-end").value;
-        window.location.href = `report_results.html?report_type=report1&start_date=${startDate}&end_date=${endDate}`;
-      };
-
       document.getElementById("report2-form").onsubmit = function (event) {
         event.preventDefault();
         const carId = document.getElementById("car-id").value;
