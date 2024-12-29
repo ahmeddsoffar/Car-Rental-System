@@ -70,7 +70,7 @@
       <!-- Report 4: All reservations of a specific customer -->
       <div class="card">
         <h2>All Reservations of a Specific Customer</h2>
-        <form id="report4-form">
+        <form id="report4-form" action="fourth_report.html">
           <label for="customer-id">Customer ID</label>
           <input
             type="text"
@@ -103,12 +103,6 @@
         event.preventDefault();
         const date = document.getElementById("report3-date").value;
         window.location.href = `report_results.html?report_type=report3&date=${date}`;
-      };
-
-      document.getElementById("report4-form").onsubmit = function (event) {
-        event.preventDefault();
-        const customerId = document.getElementById("customer-id").value;
-        window.location.href = `report_results.html?report_type=report4&customer_id=${customerId}`;
       };
 
       document.getElementById("report5-form").onsubmit = function (event) {
