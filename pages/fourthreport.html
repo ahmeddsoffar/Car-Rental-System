@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Reservations Report - Car Rental System</title>
+    <link rel="stylesheet" href="../css/search_result.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <h1>Car Rental Admin</h1>
+      <div class="navbar-links">
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="advanced_search.html">Reservations</a>
+        <a href="generate_reports.html">Reports</a>
+        <a href="1login_page.html">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Customer Reservations Report</h1>
+
+      <div class="card">
+        <h2>Customer Reservations Details</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Plate ID</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>License Number</th>
+                <th>ID</th>
+                <th>Address</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Reservation ID</th>
+                <th>Reservation Date</th>
+                <th>Pickup Date</th>
+                <th>Return Date</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <!-- Results will be inserted dynamically here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="back-button">
+        <a href="generate_reports.html" class="btn">Back to Reports</a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerId = urlParams.get("customer_id");
+
+        // Fetch report data
+        const apiUrl = `http://localhost/finallabdb/backend/fourth_report.php?report_type=report4&customer_id=${customerId}`;
+
+        fetch(apiUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const tbody = document.getElementById("results-body");
+
+            if (!data || data.length === 0) {
+              tbody.innerHTML =
+                '<tr><td colspan="14" style="text-align: center;">No results found</td></tr>';
+              return;
+            }
+
+            tbody.innerHTML = ""; // Clear existing content
+
+            data.forEach((item) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${item.model || "N/A"}</td>
+                <td>${item.PlateID || "N/A"}</td>
+                <td>${item.email || "N/A"}</td>
+                <td>${item.phone_no || "N/A"}</td>
+                <td>${item.license_no || "N/A"}</td>
+                <td>${item.ID || "N/A"}</td>
+                <td>${item.Address || "N/A"}</td>
+                <td>${item.username || "N/A"}</td>
+                <td>${item.First_name || "N/A"}</td>
+                <td>${item.Last_name || "N/A"}</td>
+                <td>${item.reservation_ID || "N/A"}</td>
+                <td>${item.reservation_Date || "N/A"}</td>
+                <td>${item.pickup_date || "N/A"}</td>
+                <td>${item.return_date || "N/A"}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            const tbody = document.getElementById("results-body");
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="14" style="text-align: center; color: var(--text-secondary);">
+                  An error occurred while fetching the report data. Please try again later.
+                </td>
+              </tr>
+            `;
+          });
+      });
+    </script>
+  </body>
+</html>

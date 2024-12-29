@@ -79,7 +79,6 @@
             placeholder="Enter Customer ID"
             required
           />
-
           <button type="submit">Generate Report</button>
         </form>
       </div>
@@ -117,7 +116,7 @@
       document.getElementById("report4-form").onsubmit = function (event) {
         event.preventDefault();
         const customerId = document.getElementById("customer-id").value;
-        window.location.href = `report_results.html?report_type=report4&customer_id=${customerId}`;
+        window.location.href = `fourthreport.html?report_type=report4&customer_id=${customerId}`;
       };
 
       document.getElementById("report5-form").onsubmit = function (event) {
