@@ -3,7 +3,7 @@ Create Database car_rental_system;
 CREATE TABLE Car(
     CarID int not null PRIMARY KEY AUTO_INCREMENT,
     Year int(4) not null,
-    Final_status varchar(20) not null ,
+    Car_status varchar(20) not null ,
     price_per_day decimal(10,2),
  	model varchar(20) not null,
     PlateID int not null,
