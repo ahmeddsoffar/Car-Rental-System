@@ -1,4 +1,4 @@
-Create Database Car_rental_system;
+Create Database car_rental_system;
 
 CREATE TABLE Car(
     CarID int not null PRIMARY KEY AUTO_INCREMENT,
@@ -16,6 +16,7 @@ CREATE TABLE Car(
 CREATE TABLE Customer(
     ID int not null PRIMARY key AUTO_INCREMENT,
     Address varchar(100) not null,
+    username varchar(20) not null UNIQUE,
     First_name varchar(20) not null,
     Last_name varchar(20) not null,
     DOB date not null,
@@ -28,6 +29,7 @@ CREATE TABLE Customer(
 CREATE TABLE admin(
     ID int not null PRIMARY key AUTO_INCREMENT,
     Address varchar(100) not null,
+    username varchar(20) not null UNIQUE,
     First_name varchar(20) not null,
     Last_name varchar(20) not null,
     email varchar(100) not null ,
@@ -35,6 +37,7 @@ CREATE TABLE admin(
     office_no int not null,
     password varchar(200) not null
 );
+
 
 CREATE TABLE office(
     office_ID int not null PRIMARY KEY AUTO_INCREMENT,

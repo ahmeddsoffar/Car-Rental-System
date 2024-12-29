@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Signup</title>
-    <link rel="stylesheet" href="css\adminsignup.css">
-    
+    <link rel="stylesheet" href="css\admin_signup.css">
 </head>
 <body>
     <div class="signup-container">
         <h2>Admin Signup</h2>
-        <form id="admin-signup-form" onsubmit="return validateAdminForm()">
+        <form id="admin-signup-form" ">
+            <input type="text" id="username" name="username" placeholder="Admin Username" required>
             <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
             <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            <input type="address" id="address" name="address" placeholder="address" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
             
             <button type="submit">Sign Up</button>
-            <p id="error-message" class="error-message" style="display: none; color: red;">Passwords do not match</p>
+            <p id="error-message" class="error-message" style="display: none;">Passwords do not match</p>
         </form>
     </div>
+
     <script>
-        function validateAdminForm() {
+         document.getElementById('admin-signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             const errorMessage = document.getElementById('error-message');
@@ -33,12 +37,29 @@
                 return false;
             } else {
                 errorMessage.style.display = 'none';
-                alert('Admin signup successful!');
-                // Redirect to admin dashboard or login page
-                window.location.href = 'admin_dashboard.html';
-                return false;
             }
-        }
+            errorMessage.style.display = 'none';
+            const formData = new FormData(document.getElementById('admin-signup-form'));
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'admin_signup.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = xhr.responseText;
+
+                    if (response === 'success') {
+                        alert('Signup successful!');
+                        localStorage.setItem('username', document.getElementById('username').value);
+                        window.location.href = 'admin_dashboard.html'; 
+                    } else {
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Sign-up failed: ' + response;
+                    }
+                } else {
+                    alert('Error: ' + xhr.status); 
+                }
+            };
+            xhr.send(formData);
+        });   
     </script>
 </body>
 </html>

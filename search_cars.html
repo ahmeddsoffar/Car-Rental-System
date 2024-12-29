@@ -2,138 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Cars - Car Rental System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-        }
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            padding: 14px 20px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .container {
-            padding: 20px;
-        }
-        .card {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .card h2 {
-            margin-top: 0;
-        }
-        .card input[type="text"],
-        .card input[type="date"],
-        .card select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .card button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .card button:hover {
-            background-color: #45a049;
-        }
-        .results-container {
-            margin-top: 20px;
-        }
-        .car-result {
-            padding: 15px;
-            background-color: #fff;
-            margin: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="./css/search_cars.css">
 </head>
 <body>
-
     <div class="navbar">
         <a href="customer_dashboard.html">Dashboard</a>
         <a href="search_cars.html">Search Cars</a>
         <a href="customer_view_reservations.html">My Reservations</a>
         <a href="profile.html">Profile</a>
-        <a href="logout.html">Logout</a>
+        <a href="1login_page.html">Logout</a>
     </div>
 
     <div class="container">
         <h1>Search Available Cars</h1>
 
-        <!-- Search Form -->
         <div class="card">
             <form id="search-form">
-                <label for="car-model">Car Model</label>
-                <input type="text" id="car-model" name="car_model" placeholder="Enter car model">
+                <div class="form-group">
+                    <label for="car-model">Car Model</label>
+                    <input type="text" id="car-model" name="car-model" placeholder="Enter car model">
+                </div>
 
-                <label for="pickup-date">Pick-up Date</label>
-                <input type="date" id="pickup-date" name="pickup_date">
+                <div class="form-group">
+                    <label for="car-color">Color</label>
+                    <input type="text" id="car-color" name="car-color" placeholder="Enter car color">
+                </div>
 
-                <label for="return-date">Return Date</label>
-                <input type="date" id="return-date" name="return_date">
+                <div class="form-group">
+                    <label for="num-seats">Number of Seats</label>
+                    <input type="number" id="num-seats" name="num-seats" placeholder="Enter number of seats">
+                </div>
+                
 
-                <label for="car-status">Car Status</label>
-                <select id="car-status" name="car_status">
-                    <option value="active">Active</option>
-                    <option value="rented">Rented</option>
-                    <option value="out_of_service">Out of Service</option>
-                </select>
+                <div class="form-group">
+                    <label for="car-type">Car Type</label>
+                    <select id="car-type" name="car-type">
+                        <option value="" selected disabled>Select Cars Type</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Convertible">Convertible</option>
+                        <option value="Truck">Truck</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="car-year">Year</label>
+                    <input type="number" id="car-year" name="car-year" placeholder="Enter car year" min="1900" max="2099">
+                </div>
+
+                <div class="form-group">
+                    <label for="motor-type">Motor Type</label>
+                    <select id="motor-type" name="motor-type">
+                        <option value="" selected disabled>Select Motor Type</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
 
                 <button type="submit">Search</button>
             </form>
         </div>
 
-        <!-- Results -->
-        <div class="results-container" id="results-container">
-            <!-- Dynamically added car results will go here -->
+        <div class="table-container" id="results-container">
+            <table id="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Plate ID</th>
+                        <th>Year</th>
+                        <th>Car Model</th>
+                        <th>Car Color</th>
+                        <th>Car Type</th>
+                        <th>No. of Seats</th>
+                        <th>Motor Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body">
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script>
-        document.getElementById('search-form').onsubmit = function(event) {
-            event.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryString = urlParams.toString();
+        const apiUrl = `http://localhost/finallabdb/search_cars.php?${queryString}`;
 
-            const model = document.getElementById('car-model').value;
-            const pickupDate = document.getElementById('pickup-date').value;
-            const returnDate = document.getElementById('return-date').value;
-            const status = document.getElementById('car-status').value;
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tbody = document.getElementById('results-body');
+                if (!data || data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8">No results found</td></tr>';
+                    return;
+                }
+                
+                data.forEach(record => {
+                    const row = document.createElement('tr');
 
-            // Simulate car search (you would use AJAX to fetch data from the backend)
-            const resultContainer = document.getElementById('results-container');
-            resultContainer.innerHTML = `
-                <div class="car-result">
-                    <h2>Car Model: ${model}</h2>
-                    <p>Pick-up Date: ${pickupDate}</p>
-                    <p>Return Date: ${returnDate}</p>
-                    <p>Status: ${status}</p>
-                    <button>Reserve Now</button>
-                </div>
-            `;
-        };
+                   const reserveUrl = `reserve_car.html?carID=${encodeURIComponent(record.carID)}&model=${encodeURIComponent(record.model)}&color=${encodeURIComponent(record.color)}&seats=${encodeURIComponent(record.No_of_seats)}&carType=${encodeURIComponent(record.carType)}&year=${encodeURIComponent(record.Year)}&motorType=${encodeURIComponent(record.motor_type)}&plateId=${encodeURIComponent(record.PlateID)}`;
+                    
+                    row.innerHTML = `
+                        <td>${record.carID}</td>
+                        <td>${record.PlateID}</td>
+                        <td>${record.Year}</td>
+                        <td>${record.model}</td>
+                        <td>${record.color}</td>
+                        <td>${record.carType}</td>
+                        <td>${record.No_of_seats}</td>
+                        <td>${record.motor_type}</td>
+
+                         <td>
+                             <a href="${reserveUrl}" class="reserve-btn">Reserve Now</a>
+                         </td>
+                    `;
+                    tbody.appendChild(row);
+                });         
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     </script>
-
 </body>
 </html>

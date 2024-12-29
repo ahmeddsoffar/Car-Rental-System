@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Search - Car Rental System</title>
+    <link rel="stylesheet" href="css/advanced_search.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Car Rental Admin</h1>
+        <div class="navbar-links">
+            <a href="admin_dashboard.html">Dashboard</a>
+            <a href="advanced_search.html">Reservations</a>
+            <a href="generate_reports.html">Reports</a>
+            <a href="1login_page.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Advanced Search</h1>
+
+        <div class="card">
+            <h2>Search Reservations</h2>
+            <form action="search_results.html" method="GET">
+
+                <div>
+                    <label for="car-id">Car ID</label>
+                    <input type="text" id="car-id" name="car_id" placeholder="Enter Car ID">
+                </div>
+
+                <div>
+                    <label for="year">Year</label>
+                    <input type="text" id="year" name="year" placeholder="Year">
+                </div>
+
+
+                <div>
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" placeholder="Enter Model">
+                </div>
+
+                <div>
+                    <label for="plate_id">Plate ID</label>
+                    <input type="text" id="plate_id" name="plate_id" placeholder="Enter Plate ID">
+                </div>
+
+                <div>
+                    <label for="color">Color</label>
+                    <input type="text" id="color" name="color" placeholder="Enter Color">
+                </div>
+
+                <div>
+                    <label for="motor_type">Motor Type</label>
+                    <input type="text" id="motor_type" name="motor_type" placeholder="Enter Motor Type">
+                </div>
+
+                <div>
+                    <label for="seats">Number of Seats</label>
+                    <input type="number" id="seats" name="seats" placeholder="Enter Number of Seats">
+                </div>
+
+                <div>
+                    <label for="car_type">Car Type</label>
+                    <select id="car_type" name="car_type">
+                        <option value="">Select car type</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                        <option value="coupe">Coupe</option>
+                        <option value="convertible">Convertible</option>
+                        <option value="truck">Truck</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="office_id">Office ID</label>
+                    <input type="text" id="office_id" name="office_id" placeholder="Enter Office ID">
+                </div>
+
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter Username">
+                </div>
+
+                <div>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address">
+                </div>
+
+                <div>
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter First Name">
+                </div>
+
+                <div>
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
+                </div>
+
+
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email">
+                </div>
+
+                <div>
+                    <label for="phone_no">Phone Number</label>
+                    <input type="text" id="phone_no" name="phone_no" placeholder="Enter Phone Number">
+                </div>
+
+                <div>
+                    <label for="license_no">License Number</label>
+                    <input type="text" id="license_no" name="license_no" placeholder="Enter License Number">
+                </div>
+
+                <div>
+                    <label for="reservation_date">Reservation date</label>
+                    <input type="date" name="reservation_date" id="reservation_date" placeholder="reservation date">
+                </div>
+
+                <button type="submit">Search Reservations</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

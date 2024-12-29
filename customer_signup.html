@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Signup</title>
-    <link rel="stylesheet" href="css\custmercss.css">
+    <link rel="stylesheet" href="css/custmer_signup.css"> <!-- Link to the external CSS file -->
 </head>
 <body>
     <div class="signup-container">
         <h2>Customer Signup</h2>
-        <form  id="customer-signup-form" >
+        <form id="customer-signup-form">
+            <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
             <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="address" id="address" name="address" placeholder="Address" required>
             <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
             <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
-            <input type="license" id="license" name="license" placeholder="license number" required>
+            <input type="text" id="license" name="license" placeholder="License Number" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
             
@@ -25,8 +26,8 @@
         </form>
     </div>
     <script>
-            // Handle form submission with AJAX
-            document.getElementById('customer-signup-form').addEventListener('submit', function(event) {
+        // Handle form submission with AJAX
+        document.getElementById('customer-signup-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
             const password = document.getElementById('password').value;
@@ -36,40 +37,32 @@
 
             if (password !== confirmPassword) {
                 errorMessage.style.display = 'block';
-                
                 return false;
             } else {
                 errorMessage.style.display = 'none';
-                
             }
-
+            errorMessage.style.display = 'none';
             const formData = new FormData(document.getElementById('customer-signup-form'));
-            // Create AJAX request 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'customer_signup.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    // Handle the response from the PHP script
                     const response = xhr.responseText;
 
                     if (response === 'success') {
                         alert('Signup successful!');
-                        localStorage.setItem('username', document.getElementById('first-name').value +" "+ document.getElementById('last-name').value);
-                        window.location.href = 'customer_dashboard.html'; // Redirect to dashboard
+                        localStorage.setItem('username', document.getElementById('username').value);
+                        window.location.href = 'customer_dashboard.html'; 
                     } else {
-                        alert('Signup failed: ' + response); // Show error message if signup fails
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Sign-up failed: ' + response;
                     }
                 } else {
-                    alert('Error: ' + xhr.status); // Handle server errors
+                    alert('Error: ' + xhr.status); 
                 }
             };
-
-            // Send form data to the PHP file
             xhr.send(formData);
-
-
         });
-        
     </script>
 </body>
 </html>

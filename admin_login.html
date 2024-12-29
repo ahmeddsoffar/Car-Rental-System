@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css\admincss.css">
+    <link rel="stylesheet" href="css\admin_login.css">
     <title>admin_login</title>
 </head>
 <body>
     <div class="login-container">
         <h2>Admin Login</h2>
-        <form id="admin-login-form" onsubmit="return validateForm()">
+        <form id="admin-login-form">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
@@ -17,22 +17,42 @@
         </form>
     </div>
     <script>
-        function validateForm() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        document.getElementById('admin-login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const usernameField = document.getElementById("username");
+            const passwordField = document.getElementById("password");
             const errorMessage = document.getElementById('error-message');
 
-            // Placeholder validation logic
-            if (username === 'admin' && password === '123') {
-                alert('Login successful!');
-                // Redirect to admin dashboard
-                window.location.href = 'admin_dashboard.html';
-                return false;
-            } else {
-                errorMessage.style.display = 'block';
-                return false;
-            }
-        }
+
+            errorMessage.style.display = 'none';
+
+            const formData = new FormData(document.getElementById('admin-login-form'));
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'admin_login.php', true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = xhr.responseText.trim();
+                    if (response === 'success') {
+                        alert('Sign-in successful!');
+                        localStorage.setItem('username', username);
+                        window.location.href = 'admin_dashboard.html';
+                    } else {
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Sign-in failed: ' + response;
+                    }
+                } else {
+                    alert('Error: ' + xhr.status);
+                }
+            };
+
+            xhr.onerror = function() {
+                alert('An error occurred during the request.');
+            };
+
+            xhr.send(formData);
+        });
     </script>
 </body>
 </html>

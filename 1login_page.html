@@ -20,7 +20,7 @@
             <h2>Customer Login</h2>
             <form  id="loginForm">
                 <p id="error-message" class="error-message">Please enter correct format for Username .</p>
-                <input type="text" id="username" name ="username" placeholder="Username (e.g First-name Last-name )" required>
+                <input type="text" id="username" name ="username" placeholder="Username" required>
                 <input type="password" id="password" name ="password" placeholder="Password" required>
                 
                 <button type="submit">Login</button>
@@ -32,66 +32,38 @@
         <div class="image-container"></div>
     </div>
 
-     <script>
+    <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Get the values entered by the user
-           // const username = document.getElementById('username').value;
-           // const password = document.getElementById('password').value;
-
-            // Mock credentials (you can replace this with an actual backend check)
-           // const correctUsername = 'c1';
-            //const correctPassword = '123';
-
-            // Check if entered credentials match
-           // if (username === correctUsername && password === correctPassword) {
-           //     // Redirect to customer dashboard if credentials are correct
-            //    window.location.href = 'customer_dashboard.html';
-          //  } else {
-           //     // Alert if credentials are incorrect
-           //     alert('Incorrect username or password');
-          //  }
-
-          var username = document.getElementById("username").value;
+            var username = document.getElementById("username").value;
             var pass = document.getElementById("password").value;
             const errorMessage = document.getElementById('error-message');
 
-             username= username.trim().replace(/\s+/g, ' ');
-            // Split on the first space
-            const firstSpaceIndex = username.indexOf(' ');
-
-            if (firstSpaceIndex === -1) {
-                errorMessage.style.display = 'block';
-        return false; // Return false if no spaces are found
-    }
             errorMessage.style.display = 'none';
-            document.getElementById('username').value = username;
             
 
 
-            const formData = new FormData(document.getElementById('loginForm'));
-            // Create AJAX request 
+            const formData = new FormData(document.getElementById('loginForm')); 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '1login_page.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    // Handle the response from the PHP script
-                    const response = xhr.responseText;
+                    const response = xhr.responseText.trim();
 
                     if (response === 'success') {
                         alert('Signin successful!');
                         localStorage.setItem('username', username);
-                        window.location.href = 'customer_dashboard.html'; // Redirect to dashboard
+                        window.location.href = 'customer_dashboard.html'; 
                     } else {
-                        alert('Signin failed: ' + response); // Show error message if signup fails
+                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = 'Sign-in failed: ' + response;
                     }
                 } else {
-                    alert('Error: ' + xhr.status); // Handle server errors
+                    alert('Error: ' + xhr.status); 
                 }
             };
 
-            // Send form data to the PHP file
             xhr.send(formData);
             
         });

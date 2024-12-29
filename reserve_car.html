@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserve Car</title>
+    <link rel="stylesheet" href="css/reserve.css">
+
+</head>
+<body>
+
+    <h1>Reserve Your Car</h1>
+    <div id="car-details">
+        <!-- Car details will be displayed here -->
+    </div>
+
+    <form id="reserve-form">
+        
+        <label for="user-name">Verify that it is you</label>
+        <input type="text" id="user-name" name="user_name" placeholder="Enter your username" required>
+
+        <label for="pickup-date">Pickup Date</label>
+        <input type="date" id="pickup-date" name="pickup_date" required>
+
+        <label for="return-date">Return Date</label>
+        <input type="date" id="return-date" name="return_date" required>
+
+        <button type="submit">Confirm Reservation</button>
+    </form>
+
+
+
+
+
+
+
+
+    
+    <script>
+        // Parse query string parameters
+        const params = new URLSearchParams(window.location.search);
+        const model = params.get('model');
+        const color = params.get('color');
+        const seats = params.get('seats');
+        const carType = params.get('carType');
+        const year = params.get('year');
+        const motorType = params.get('motorType');
+        const carID = params.get('carID');
+
+        // Display car details
+        const carDetails = document.getElementById('car-details');
+        carDetails.innerHTML = `
+            <h2>Car Details</h2>
+            <p>Car ID: ${carID}</p>
+            <p>Model: ${model}</p>
+            <p>Color: ${color}</p>
+            <p>Seats: ${seats}</p>
+            <p>Type: ${carType}</p>
+            <p>Year: ${year}</p>
+            <p>Motor Type: ${motorType}</p>
+        `;
+        
+    document.getElementById('reserve-form').onsubmit = function(event) {
+    event.preventDefault();
+
+    const username_check = localStorage.getItem('username');
+    const username = document.getElementById('user-name').value;
+    const pickupDate = document.getElementById('pickup-date').value;
+    const returnDate = document.getElementById('return-date').value;
+
+    if (username_check != username) {
+        alert("Not YOU :/ Please sign in again.");
+        window.location.href = '1login_page.html';
+    }
+    else if(pickupDate > returnDate)
+        {
+            alert("Not a possible time interval.");
+        } 
+    
+    else {
+        //alert(`Reservation confirmed for ${username}!\nPickup: ${pickupDate}\nReturn: ${returnDate}`);
+
+        fetch('reserve_car.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'user_name=' + encodeURIComponent(username) +
+                  '&pickup_date=' + encodeURIComponent(pickupDate) +
+                  '&return_date=' + encodeURIComponent(returnDate) +
+                  '&car_ID=' + encodeURIComponent(carID)
+        })
+        .then(response => response.json())  // Parse JSON response
+        .then(data => {
+            console.log(data);  // Log the data for debugging
+            if (data.status === 'success') {
+                alert('Reservation created successfully!');
+                window.location.href = 'search_cars.html';
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred');
+        });
+    }
+};
+
+    </script>
+
+</body>
+</html>
