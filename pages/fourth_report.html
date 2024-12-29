@@ -26,12 +26,10 @@
           <table>
             <thead>
               <tr>
-                <th>Model</th>
-                <th>Plate ID</th>
+                <th>Customer ID</th>
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>License Number</th>
-                <th>ID</th>
                 <th>Address</th>
                 <th>Username</th>
                 <th>First Name</th>
@@ -40,6 +38,8 @@
                 <th>Reservation Date</th>
                 <th>Pickup Date</th>
                 <th>Return Date</th>
+                <th>Model</th>
+                <th>Plate ID</th>
               </tr>
             </thead>
             <tbody id="results-body">
@@ -78,17 +78,15 @@
               return;
             }
 
-            tbody.innerHTML = ""; // Clear existing content
+            tbody.innerHTML = ""; 
 
             data.forEach((item) => {
               const row = document.createElement("tr");
               row.innerHTML = `
-                <td>${item.model || "N/A"}</td>
-                <td>${item.PlateID || "N/A"}</td>
+                <td>${item.ID || "N/A"}</td>
                 <td>${item.email || "N/A"}</td>
                 <td>${item.phone_no || "N/A"}</td>
                 <td>${item.license_no || "N/A"}</td>
-                <td>${item.ID || "N/A"}</td>
                 <td>${item.Address || "N/A"}</td>
                 <td>${item.username || "N/A"}</td>
                 <td>${item.First_name || "N/A"}</td>
@@ -97,6 +95,8 @@
                 <td>${item.reservation_Date || "N/A"}</td>
                 <td>${item.pickup_date || "N/A"}</td>
                 <td>${item.return_date || "N/A"}</td>
+                <td>${item.model || "N/A"}</td>
+                <td>${item.PlateID || "N/A"}</td>
               `;
               tbody.appendChild(row);
             });
