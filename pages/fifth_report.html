@@ -31,7 +31,7 @@
               </tr>
             </thead>
             <tbody id="results-body">
-              <!-- Results will be inserted dynamically here -->
+              
             </tbody>
           </table>
         </div>
@@ -48,7 +48,6 @@
         const startDate = urlParams.get("start_date");
         const endDate = urlParams.get("end_date");
 
-        // Fetch report data
         const apiUrl = `http://localhost/finallabdb/backend/fifth_report.php?report_type=report5&start_date=${startDate}&end_date=${endDate}`;
 
         fetch(apiUrl)
@@ -67,7 +66,7 @@
               return;
             }
 
-            tbody.innerHTML = ""; // Clear existing content
+            tbody.innerHTML = "";
 
             data.forEach((item) => {
               const row = document.createElement("tr");
