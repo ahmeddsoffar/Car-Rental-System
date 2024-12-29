@@ -34,11 +34,16 @@
             <label for="status">New Status</label>
             <select id="status" name="status" required>
               <option value="">Select status</option>
-              <option value="Available">Available</option>
+              <option value="Active">Available</option>
               <option value="out_of_service">Out of Service</option>
-              <option value="maintenance">Under Maintenance</option>
-              <option value="reserved">Reserved</option>
+              <option value="rented">Rented</option>
             </select>
+
+            <label for="start_date">Start Date</label>
+            <input type="date" id="start_date" name="start_date" required />
+
+            <label for="end_date">End Date</label>
+            <input type="date" id="end_date" name="end_date" required />
 
             <button type="submit">Update Status</button>
           </form>
@@ -64,10 +69,10 @@
             if (xhr.status === 200) {
               const response = xhr.responseText;
               if (response === "success") {
-                alert("the car status is succesfully updated");
+                alert("the car status is successfully updated");
                 window.location.href = "admin_dashboard.html";
               } else {
-                alert("updating this car is failed");
+                alert("updating this car failed");
               }
             } else {
               alert("Error: " + xhr.status);
@@ -78,5 +83,3 @@
     </script>
   </body>
 </html>
-
-<!--http://localhost/finallabdb/update_car_status.html-->

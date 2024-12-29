@@ -1,108 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add New Car - Car Rental System</title>
-    <link rel="stylesheet" href="../css/add_car.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/add_car.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="form-section">
-            <div class="form-container">
-                <h2>Add New Car</h2>
-                <form id="add-car-form">
-                    <div>
-                        <label for="model">Car Model</label>
-                        <input type="text" id="model" name="model" placeholder="Enter car model" required>
-                    </div>
-
-                    <div>
-                        <label for="year">Year</label>
-                        <input type="number" id="year" name="year" placeholder="Enter year" required>
-                    </div>
-
-                    <div>
-                        <label for="plate_id">Plate ID</label>
-                        <input type="text" id="plate_id" name="plate_id" placeholder="Enter plate ID" required>
-                    </div>
-
-                    <div>
-                        <label for="color">Color</label>
-                        <input type="text" id="color" name="color" placeholder="Enter color" required>
-                    </div>
-
-                    <div>
-                        <label for="motor_type">Motor Type</label>
-                        <input type="text" id="motor_type" name="motor_type" placeholder="Enter motor type" required>
-                    </div>
-
-                    <div>
-                        <label for="num_seats">Number of Seats</label>
-                        <input type="number" id="num_seats" name="num_seats" placeholder="Enter number of seats" required>
-                    </div>
-
-                    <div>
-                        <label for="car_type">Car Type</label>
-                        <select id="car_type" name="car_type" required>
-                            <option value="">Select car type</option>
-                            <option value="sedan">Sedan</option>
-                            <option value="suv">SUV</option>
-                            <option value="coupe">Coupe</option>
-                            <option value="convertible">Convertible</option>
-                            <option value="truck">Truck</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="office_id">Office ID</label>
-                        <input type="text" id="office_id" name="office_id" placeholder="Enter office ID" required>
-                    </div>
-
-                    <div>
-                        <label for="status">Status</label>
-                        <select id="status" name="status" required>
-                            <option value="">Select status</option>
-                            <option value="active">Active</option>
-                            <option value="out_of_service">Out of Service</option>
-                            <option value="rented">Rented</option>
-                        </select>
-                    </div>
-
-                    <button type="submit">Add Car</button>
-                </form>
+      <div class="form-section">
+        <div class="form-container">
+          <h2>Add New Car</h2>
+          <form id="add-car-form">
+            <div>
+              <label for="model">Car Model</label>
+              <input
+                type="text"
+                id="model"
+                name="model"
+                placeholder="Enter car model"
+                required
+              />
             </div>
+
+            <div>
+              <label for="year">Year</label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                placeholder="Enter year"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="plate_id">Plate ID</label>
+              <input
+                type="text"
+                id="plate_id"
+                name="plate_id"
+                placeholder="Enter plate ID"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="color">Color</label>
+              <input
+                type="text"
+                id="color"
+                name="color"
+                placeholder="Enter color"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="motor_type">Motor Type</label>
+              <input
+                type="text"
+                id="motor_type"
+                name="motor_type"
+                placeholder="Enter motor type"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="num_seats">Number of Seats</label>
+              <input
+                type="number"
+                id="num_seats"
+                name="num_seats"
+                placeholder="Enter number of seats"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="start_date">Start Date</label>
+              <input type="date" id="start_date" name="start_date" required />
+            </div>
+
+            <div>
+              <label for="end_date">End Date</label>
+              <input type="date" id="end_date" name="end_date" required />
+            </div>
+
+            <div>
+              <label for="car_type">Car Type</label>
+              <select id="car_type" name="car_type" required>
+                <option value="">Select car type</option>
+                <option value="sedan">Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="coupe">Coupe</option>
+                <option value="convertible">Convertible</option>
+                <option value="truck">Truck</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="office_id">Office ID</label>
+              <input
+                type="text"
+                id="office_id"
+                name="office_id"
+                placeholder="Enter office ID"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="status">Status</label>
+              <select id="status" name="status" required>
+                <option value="">Select status</option>
+                <option value="active">Active</option>
+                <option value="out_of_service">Out of Service</option>
+                <option value="rented">Rented</option>
+              </select>
+            </div>
+
+            <button type="submit">Add Car</button>
+          </form>
         </div>
-        <div class="image-section"></div>
+      </div>
+      <div class="image-section"></div>
     </div>
 
-        <script>
-        // Handle form submission with AJAX
-        document.getElementById('add-car-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+    <script>
+      // Handle form submission with AJAX
+      document
+        .getElementById("add-car-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
 
-            
-            const formData = new FormData(document.getElementById('add-car-form'));
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '../backend/add_car.php', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const response = xhr.responseText;
+          const formData = new FormData(
+            document.getElementById("add-car-form")
+          );
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "../backend/add_car.php", true);
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              const response = xhr.responseText;
 
-                    if (response === 'success') {
-                        alert('the car successfull added');
-                        window.location.href="admin_dashboard.html";
-                    
-                       
-                    } else {
-                        alert('adding this car is failed');
-                    }
-                } else {
-                    alert('Error: ' + xhr.status); 
-                }
-            };
-            xhr.send(formData);
+              if (response === "success") {
+                alert("the car successfully added");
+                window.location.href = "admin_dashboard.html";
+              } else {
+                alert("adding this car failed");
+              }
+            } else {
+              alert("Error: " + xhr.status);
+            }
+          };
+          xhr.send(formData);
         });
-        </script>
-</body>
+    </script>
+  </body>
 </html>
