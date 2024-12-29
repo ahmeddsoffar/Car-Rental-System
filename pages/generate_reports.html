@@ -36,7 +36,7 @@
       <!-- Report 2: All reservations for a specific car -->
       <div class="card">
         <h2>All Reservations of a Specific Car</h2>
-        <form id="report2-form">
+        <form id="report2-form" action="second_report.html">
           <label for="car-id">Car ID</label>
           <input
             type="text"
@@ -100,14 +100,6 @@
     </div>
 
     <script>
-      document.getElementById("report2-form").onsubmit = function (event) {
-        event.preventDefault();
-        const carId = document.getElementById("car-id").value;
-        const startDate = document.getElementById("report2-start").value;
-        const endDate = document.getElementById("report2-end").value;
-        window.location.href = `report_results.html?report_type=report2&car_id=${carId}&start_date=${startDate}&end_date=${endDate}`;
-      };
-
       document.getElementById("report3-form").onsubmit = function (event) {
         event.preventDefault();
         const date = document.getElementById("report3-date").value;
