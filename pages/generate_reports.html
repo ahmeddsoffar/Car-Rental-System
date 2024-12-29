@@ -86,12 +86,12 @@
       <!-- Report 5: Daily Payments within a specified period -->
       <div class="card">
         <h2>Daily Payments Within a Specified Period</h2>
-        <form id="report5-form">
-          <label for="report5-start">Start Date</label>
-          <input type="date" id="report5-start" name="start_date" required />
+        <form id="report5-form" action="fifth_report.html">
+          <label for="start_date">Start Date</label>
+          <input type="date" id="start_date" name="start_date" required />
 
-          <label for="report5-end">End Date</label>
-          <input type="date" id="report5-end" name="end_date" required />
+          <label for="end_date">End Date</label>
+          <input type="date" id="end_date" name="end_date" required />
 
           <button type="submit">Generate Report</button>
         </form>
@@ -99,18 +99,7 @@
     </div>
 
     <script>
-      document.getElementById("report3-form").onsubmit = function (event) {
-        event.preventDefault();
-        const date = document.getElementById("report3-date").value;
-        window.location.href = `report_results.html?report_type=report3&date=${date}`;
-      };
-
-      document.getElementById("report5-form").onsubmit = function (event) {
-        event.preventDefault();
-        const startDate = document.getElementById("report5-start").value;
-        const endDate = document.getElementById("report5-end").value;
-        window.location.href = `report_results.html?report_type=report5&start_date=${startDate}&end_date=${endDate}`;
-      };
+      
     </script>
   </body>
 </html>
