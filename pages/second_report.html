@@ -37,10 +37,10 @@
                 <th>Number of Seats</th>
                 <th>Car Type</th>
                 <th>Office ID</th>
+                <th>Reservation ID</th>
                 <th>Reservation Date</th>
                 <th>Pickup Date</th>
                 <th>Return Date</th>
-                <th>Customer ID</th>
               </tr>
             </thead>
             <tbody id="results-body">
@@ -63,7 +63,7 @@
         const endDate = urlParams.get("end_date");
 
         // Fetch report data
-        const apiUrl = `http://localhost/finallabdb/backend/generate_report.php?report_type=report2&car_id=${carId}&start_date=${startDate}&end_date=${endDate}`;
+        const apiUrl = `http://localhost/finallabdb/backend/second_report.php?report_type=report2&car_id=${carId}&start_date=${startDate}&end_date=${endDate}`;
 
         fetch(apiUrl)
           .then((response) => {
@@ -97,10 +97,10 @@
                             <td>${item.No_of_seats || "N/A"}</td>
                             <td>${item.carType || "N/A"}</td>
                             <td>${item.office_ID || "N/A"}</td>
+                            <td>${item.reservation_ID || "N/A"}</td>
                             <td>${item.reservation_Date || "N/A"}</td>
                             <td>${item.pickup_date || "N/A"}</td>
                             <td>${item.return_date || "N/A"}</td>
-                            <td>${item.CustomerID || "N/A"}</td>
                         `;
               tbody.appendChild(row);
             });
