@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Payments Report - Car Rental System</title>
+    <link rel="stylesheet" href="../css/search_result.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <h1>Car Rental Admin</h1>
+      <div class="navbar-links">
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="advanced_search.html">Reservations</a>
+        <a href="generate_reports.html">Reports</a>
+        <a href="1login_page.html">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Daily Payments Report</h1>
+
+      <div class="card">
+        <h2>Daily Payments Within Period</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Total Payments</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <!-- Results will be inserted dynamically here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="back-button">
+        <a href="generate_reports.html" class="btn">Back to Reports</a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const startDate = urlParams.get("start_date");
+        const endDate = urlParams.get("end_date");
+
+        // Fetch report data
+        const apiUrl = `http://localhost/finallabdb/backend/fifth_report.php?report_type=report5&start_date=${startDate}&end_date=${endDate}`;
+
+        fetch(apiUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const tbody = document.getElementById("results-body");
+
+            if (!data || data.length === 0) {
+              tbody.innerHTML =
+                '<tr><td colspan="2" style="text-align: center;">No payments found for this period</td></tr>';
+              return;
+            }
+
+            tbody.innerHTML = ""; // Clear existing content
+
+            data.forEach((item) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${item.payment_date || "N/A"}</td>
+                <td>$${item.total_payment || "0.00"}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            const tbody = document.getElementById("results-body");
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="2" style="text-align: center; color: var(--text-secondary);">
+                  An error occurred while fetching the payment data. Please try again later.
+                </td>
+              </tr>
+            `;
+          });
+      });
+    </script>
+  </body>
+</html>
