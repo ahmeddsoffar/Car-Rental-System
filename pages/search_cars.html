@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Cars - Car Rental System</title>
-    <link rel="stylesheet" href="./css/search_cars.css">
+    <link rel="stylesheet" href="../css/search_cars.css">
 </head>
 <body>
     <div class="navbar">
@@ -92,7 +92,7 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const queryString = urlParams.toString();
-        const apiUrl = `http://localhost/finallabdb/search_cars.php?${queryString}`;
+        const apiUrl = `http://localhost/finallabdb/backend/search_cars.php?${queryString}`;
 
         fetch(apiUrl)
             .then(response => {

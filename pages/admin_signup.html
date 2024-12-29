@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Signup</title>
-    <link rel="stylesheet" href="css\admin_signup.css">
+    <link rel="stylesheet" href="../css\admin_signup.css">
 </head>
 <body>
     <div class="signup-container">
@@ -41,7 +41,7 @@
             errorMessage.style.display = 'none';
             const formData = new FormData(document.getElementById('admin-signup-form'));
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'admin_signup.php', true);
+            xhr.open('POST', '../backend/admin_signup.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const response = xhr.responseText;
