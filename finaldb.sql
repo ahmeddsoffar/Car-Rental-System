@@ -5,12 +5,8 @@ CREATE TABLE Car(
     Year int(4) not null,
     Car_status varchar(20) not null ,
     price_per_day decimal(10,2),
-
-
  	model varchar(20) not null,
     PlateID int not null,
-
-
     color varchar(20) not null,
     motor_type varchar(20) not null,
     No_of_seats int not null,
@@ -33,17 +29,10 @@ CREATE TABLE Customer(
     username varchar(20) not null UNIQUE,
     First_name varchar(20) not null,
     Last_name varchar(20) not null,
-
-
     DOB date not null,
-
-
     email varchar(100) not null ,
     phone_no varchar(11) not null ,
     license_no int not null,
-
-
-
     password varchar(200) not null
 );
 
@@ -73,9 +62,6 @@ CREATE TABLE reservation(
     reservation_Date date,
     pickup_date date,
     return_date date,
-
-
-
     CarID int not null,
     CustomerID int not null
 );
