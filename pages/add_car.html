@@ -82,6 +82,11 @@
               <label for="start_date">Start Date</label>
               <input type="date" id="start_date" name="start_date" required />
             </div>
+            
+            <div>
+              <label for="price">Price</label>
+              <input type="number" id="price" name="price" required />
+            </div>
 
             <div>
               <label for="end_date">End Date</label>
@@ -120,6 +125,7 @@
                 <option value="rented">Rented</option>
               </select>
             </div>
+            
 
             <button type="submit">Add Car</button>
           </form>
@@ -148,7 +154,7 @@
                 alert("the car successfully added");
                 window.location.href = "admin_dashboard.html";
               } else {
-                alert("adding this car failed");
+                alert("adding this car is failed");
               }
             } else {
               alert("Error: " + xhr.status);

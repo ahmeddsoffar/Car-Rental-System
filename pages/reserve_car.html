@@ -44,13 +44,15 @@
         const carType = params.get('carType');
         const year = params.get('year');
         const motorType = params.get('motorType');
-        const carID = params.get('carID');
+        const carID = params.get('CarID');
+        const priceperday = params.get('price_per_day');
 
         // Display car details
         const carDetails = document.getElementById('car-details');
         carDetails.innerHTML = `
             <h2>Car Details</h2>
             <p>Car ID: ${carID}</p>
+            <p>$/day: ${priceperday}$</p>
             <p>Model: ${model}</p>
             <p>Color: ${color}</p>
             <p>Seats: ${seats}</p>
